@@ -28,16 +28,12 @@ public class ClientController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json") 
 	public @ResponseBody String addNewCustomer (@RequestBody Client client) {
-
-		ClientDB n = new ClientDB();
-		n.setClient(client.getClient());
-		n.setCity(client.getCity());
-		clientRepository.save(n);
+                clientRepository.save(client);
 		return "{ \"status\" : \"saved\"}";
 	}
 
 	@GetMapping(value = "/all", headers="Accept=application/json")
-	public @ResponseBody Iterable<ClientDB> getAllUsers() {
+	public @ResponseBody Iterable<Client> getAllUsers() {
 		return clientRepository.findAll();
 	}
 }

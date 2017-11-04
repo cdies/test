@@ -11,6 +11,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author pc
  */
-public interface ClientRepository extends CrudRepository<ClientDB, Long> {
+public interface ClientRepository extends CrudRepository<Client, Long> {
 
 }
