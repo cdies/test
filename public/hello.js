@@ -11,7 +11,7 @@ angular.module("myApp", [])
                                 $scope.update();
                             } else {
 
-                                var id = $scope.clients.length;
+                                var id = $scope.clients.length + 1;
 
                                 $scope.clients.push({
                                     id: id,
