@@ -1,4 +1,4 @@
-/home/pc/NetBeansProjects/111/src/main/java/com/example/Client.java
-/home/pc/NetBeansProjects/111/src/main/java/com/example/ClientController.java
+/home/pc/NetBeansProjects/111/src/main/java/com/example/repository/ClientRepository.java
 /home/pc/NetBeansProjects/111/src/main/java/com/example/Application.java
-/home/pc/NetBeansProjects/111/src/main/java/com/example/ClientRepository.java
+/home/pc/NetBeansProjects/111/src/main/java/com/example/model/Client.java
+/home/pc/NetBeansProjects/111/src/main/java/com/example/controllers/ClientController.java

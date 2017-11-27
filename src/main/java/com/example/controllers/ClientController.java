@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example;
+package com.example.controllers;
 
+import com.example.model.Client;
+import com.example.repository.ClientRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,13 +28,14 @@ public class ClientController {
 	private ClientRepository clientRepository;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json") 
-	public @ResponseBody String addNewCustomer (@RequestBody Client client) {
+	public String addNewCustomer (@RequestBody Client client) {
                 clientRepository.save(client);
+                
 		return "{ \"status\" : \"saved\"}";
 	}
 
 	@GetMapping(value = "/all", headers="Accept=application/json")
-	public @ResponseBody Iterable<Client> getAllUsers() {
+	public Iterable<Client> getAllUsers() {
 		return clientRepository.findAll();
 	}
 }
