@@ -5,52 +5,72 @@
  */
 package com.example.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-@Entity // This tells Hibernate to make a table out of this class
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @Column(name="user_id")
+    private Long id;
 
-    @JsonProperty("client")
-    private String client;
+    private String name;
 
-    @JsonProperty("city")
-    private String city;
+    private String surname;
 
-    public Client() {
-    }
+    private String country;
 
-    public Integer getId() {
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private List<Loan> loans = new ArrayList<>();
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getClient() {
-        return client;
+    public String getName() {
+        return name;
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
 }

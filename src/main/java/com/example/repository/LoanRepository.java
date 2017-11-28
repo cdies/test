@@ -6,12 +6,11 @@
 package com.example.repository;
 
 import com.example.model.Client;
+import com.example.model.Loan;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ClientRepository extends JpaRepository<Client, Long> {
+public interface LoanRepository extends JpaRepository<Loan, Long> {
     
-    Optional<Client> findById(Long id);
-    
-    Optional<Client> findByNameAndSurname(String name, String surname);
+    Optional<Client> findByUserId(Long userId);
 }

@@ -1,23 +1,16 @@
 app.controller("Hello", function ($scope, $http) {
 
-    var isUpdated = false;
-
     $scope.addNewClient = function () {
-        $http.post('../add', {client: $scope.client, city: $scope.city}).
+        $http.post('../client/add', {name: $scope.name, country: $scope.country}).
                 then(function (data) {
 
-                    if (!isUpdated) {
-                        $scope.update();
-                    } else {
+                    var id = $scope.clients.length + 1;
 
-                        var id = $scope.clients.length + 1;
-
-                        $scope.clients.push({
-                            id: id,
-                            client: $scope.client,
-                            city: $scope.city
-                        });
-                    }
+                    $scope.clients.push({
+                        id: id,
+                        name: $scope.name,
+                        country: $scope.country
+                    });
 
                     console.log(data);
                 }, function (error) {
@@ -29,14 +22,12 @@ app.controller("Hello", function ($scope, $http) {
 
     $scope.update = function () {
 
-        if (!isUpdated) {
-            $http.get('../all').
-                    then(function (data) {
-                        $scope.clients = data.data;
-                    }, function (error) {
-                        console.log(error);
-                    });
-        }
-        isUpdated = true;
+        $http.get('../client/all').
+                then(function (data) {
+                    $scope.clients = data.data;
+                }, function (error) {
+                    console.log(error);
+                });
+
     };
 });
