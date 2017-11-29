@@ -1,7 +1,7 @@
-<table>
-    <tbody>
-        <tr ng-repeat="info in loans">
-            <td>{{info}}</td>
-        </tr>
-    </tbody>
-</table>
+<div>
+    <h2>Input all client data.</h2>
+    <p>Client name: <input ng-model="name"></p>
+    <p>Client surname: <input ng-model="surname"></p>
+    <p>Client country <input ng-model="country"></p>
+    <button ng-click="addNewClient()" ng-enter="addNewClient()">Add client</button>
+</div>

@@ -20,8 +20,8 @@ app.config(function ($stateProvider) {
                 data: {pageTitle: 'All clients'},
                 controller: 'ClientShowAll'
             })
-            .state('add_client', {
-                url: 'add_client',
+            .state('addClient', {
+                url: 'addClient',
                 templateUrl: 'template/add-client.html',
                 data: {pageTitle: 'Add client'},
                 controller: 'addClient'
