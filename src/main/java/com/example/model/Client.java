@@ -5,6 +5,7 @@
  */
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -30,6 +31,7 @@ public class Client {
 
     private String country;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private List<Loan> loans = new ArrayList<>();

@@ -7,33 +7,19 @@ app.controller("LoanShowAll", function ($scope, showAll) {
 });
 
 
-//app.controller("LoanShowAll", function ($scope, $http) {
-//    $scope.addNewClient = function () {
-//        $http.post('../client/add', {name: $scope.name, country: $scope.country}).
-//                then(function (data) {
-//
-//                    var id = $scope.clients.length + 1;
-//
-//                    $scope.clients.push({
-//                        id: id,
-//                        name: $scope.name,
-//                        country: $scope.country
-//                    });
-//
-//                    console.log(data);
-//                }, function (error) {
-//                    console.log(error);
-//                });
-//    };
-//
-//    $scope.update = function () {
-//
-//        $http.get('../client/all').
-//                then(function (data) {
-//                    $scope.clients = data.data;
-//                }, function (error) {
-//                    console.log(error);
-//                });
-//
-//    };
-//});
+app.controller("addLoan", function ($scope, $http, showAll) {
+
+    showAll.async('../client/all').then(function (data) {
+        $scope.clients = data;
+    });
+
+    $scope.addNewLoan = function () {
+        $http.post('../loan/add', {userId: $scope.selectedClient.id, loan: $scope.loan, term: $scope.term}).
+                then(function (data) {
+                    alert(data.data.text);
+                }, function (error) {
+                    alert(error.data.message);
+                    console.log(error);
+                });
+    };
+});

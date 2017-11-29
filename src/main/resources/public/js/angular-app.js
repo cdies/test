@@ -25,6 +25,12 @@ app.config(function ($stateProvider) {
                 templateUrl: 'template/add-client.html',
                 data: {pageTitle: 'Add client'},
                 controller: 'addClient'
+            })
+            .state('addLoan', {
+                url: 'addLoan',
+                templateUrl: 'template/add-loan.html',
+                data: {pageTitle: 'Add loan'},
+                controller: 'addLoan'
             });
 });
 

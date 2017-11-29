@@ -1,0 +1,7 @@
+<div>
+    <h2>Select user:</h2>
+    <select ng-model="selectedClient" ng-options="x as (x.name + ' ' + x.surname + ' ' + x.country) for x in clients"></select>
+    <p>Loan: <input type="text" ng-model="loan"></p>
+    <p>Term: <input type="text" ng-model="term"></p>
+    <button ng-click="addNewLoan()" ng-enter="addNewLoan()">Add loan</button>
+</div>

@@ -12,10 +12,9 @@ app.controller("addClient", function ($scope, $http) {
     $scope.addNewClient = function () {
         $http.post('../client/add', {name: $scope.name, surname: $scope.surname, country: $scope.country}).
                 then(function (data) {
-                    alert("Client succesefully added.");
-                    console.log(data);
+                    alert(data.data.text);
                 }, function (error) {
-                    alert("Warning: client not added.");
+                    alert(error.data.message);
                     console.log(error);
                 });
     };

@@ -8,6 +8,7 @@ package com.example.simple.data;
 import com.example.model.Client;
 import com.example.model.Loan;
 import com.example.repository.ClientRepository;
+import com.example.repository.LoanRepository;
 import java.util.Arrays;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class SimpleData {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private LoanRepository loanRepository;
 
     @PostConstruct
     public void init() {
@@ -42,8 +46,15 @@ public class SimpleData {
         client2.setName("Name2");
         client2.setSurname("Surname2");
         client2.setCountry("Country2");
-        
+
         clientRepository.save(client2);
+
+        Loan loan3 = new Loan();
+        loan3.setLoan(333.0);
+        loan3.setTerm("Simple term3");
+        loan3.setUserId(2L);
+        
+        loanRepository.save(loan3);
     }
 
 }
