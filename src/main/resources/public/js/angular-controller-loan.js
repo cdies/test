@@ -13,6 +13,7 @@ app.controller("addLoan", function ($scope, $http, showAll) {
         $scope.clients = data;
     });
 
+//TODO: check value for correct
     $scope.addNewLoan = function () {
         $http.post('../loan/add', {userId: $scope.selectedClient.id, loan: $scope.loan, term: $scope.term}).
                 then(function (data) {

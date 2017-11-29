@@ -1,0 +1,12 @@
+<div>
+    <h2>Select user:</h2>
+    <select ng-model="selectedClient" ng-options="x as (x.name + ' ' + x.surname + ' ' + x.country) for x in clients"></select>
+    <button ng-click="showLoans()" ng-enter="showLoans()">show loan</button>
+</div>
+<table>
+    <tbody>
+        <tr ng-repeat="info in loans">
+            <td>{{info}}</td>
+        </tr>
+    </tbody>
+</table>

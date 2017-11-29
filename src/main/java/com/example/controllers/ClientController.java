@@ -8,7 +8,9 @@ package com.example.controllers;
 import com.example.controllers.helper.ResponseTransfer;
 import com.example.controllers.helper.UserAlreadyExists;
 import com.example.model.Client;
+import com.example.model.Loan;
 import com.example.repository.ClientRepository;
+import com.example.repository.LoanRepository;
 import java.util.Optional;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +29,14 @@ public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private LoanRepository loanRepository;
+
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer addNewCustomer(@RequestBody Client client) {
-        
+
         Optional<Client> isExist = clientRepository.findByNameAndSurnameAndCountry(client.getName(), client.getSurname(), client.getCountry());
-        
+
         if (isExist.isPresent()) {
             throw new UserAlreadyExists("");
         }
@@ -45,5 +50,11 @@ public class ClientController {
     public Iterable<Client> getAllUsers() {
 
         return clientRepository.findAll();
+    }
+
+    @RequestMapping(value = "/loan", method = RequestMethod.POST, headers = "Accept=application/json")
+    public Iterable<Loan> GetAllLoansOfUsers(@RequestBody Long userId) {
+
+        return loanRepository.findByUserId(userId);
     }
 }
