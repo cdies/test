@@ -1,14 +1,5 @@
 <div class="container">
-    Client name: <input ng-model="name">
-    City: <input ng-model="country">
-    <button ng-click="addNewClient()" ng-enter="addNewClient()">add</button>
-    <button ng-click="update()" ng-enter="update()">Show</button>
+    <button ng-click="menuItemClick('loans')">Show all loans</button>
+    <button ng-click="menuItemClick('clients')" >Show all clients</button>
+    <button ng-click="menuItemClick('add_client')" >Add client</button>
 </div>
-
-<table>
-    <tbody>
-        <tr ng-repeat="info in clients">
-            <td>{{info}}</td>
-        </tr>
-    </tbody>
-</table>

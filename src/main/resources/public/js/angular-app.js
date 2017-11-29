@@ -6,8 +6,25 @@ app.config(function ($stateProvider) {
             .state('default', {
                 url: '',
                 templateUrl: 'template/home.html',
-                data: {pageTitle: 'HomePage'},
-                controller: 'Hello'
+                data: {pageTitle: 'HomePage'}
+            })
+            .state('loans', {
+                url: 'loans',
+                templateUrl: 'template/all-loans.html',
+                data: {pageTitle: 'All loans'},
+                controller: 'LoanShowAll'
+            })
+            .state('clients', {
+                url: 'clients',
+                templateUrl: 'template/all-clients.html',
+                data: {pageTitle: 'All clients'},
+                controller: 'ClientShowAll'
+            })
+            .state('add_client', {
+                url: 'add_client',
+                templateUrl: 'template/add-client.html',
+                data: {pageTitle: 'Add client'},
+                controller: 'addClient'
             });
 });
 

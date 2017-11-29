@@ -33,10 +33,17 @@ public class SimpleDataComponent {
         Loan loan2 = new Loan();
         loan2.setLoan(222.0);
         loan2.setTerm("Simple term2");
-        
+
         client1.setLoans(Arrays.asList(loan1, loan2));
-        
+
         clientRepository.save(client1);
+
+        Client client2 = new Client();
+        client2.setName("Name2");
+        client2.setSurname("Surname2");
+        client2.setCountry("Country2");
+        
+        clientRepository.save(client2);
     }
 
 }

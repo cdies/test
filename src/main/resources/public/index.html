@@ -3,18 +3,31 @@
     <head>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
-        
+
         <title ng-bind="$state.current.data.pageTitle"></title>
-        
+
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
+        <div ng-controller="topMenuController">
+            <nav>
+                <a ng-click="menuItemClick('default')" href="#">
+                    <span>Home page</span>
+                </a>
+                <a ng-click="menuItemClick('default')" href="#">
+                    <span>About</span>
+                </a>
+            </nav>
 
-        <div ui-view></div>
+            <div ui-view></div>
+
+        </div>
 
         <script src="js/plugin/angular.min.js"></script>
         <script src="js/plugin/angular-ui-route.min.js"></script>
         <script src="js/angular-app.js"></script>
+        <script src="js/angular-root-controller.js"></script>
         <script src="js/angular-controller-client.js"></script>
+        <script src="js/angular-controller-loan.js"></script>
     </body>
 </html>
