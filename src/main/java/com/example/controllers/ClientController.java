@@ -57,4 +57,14 @@ public class ClientController {
 
         return loanRepository.findByUserId(userId);
     }
+
+    @RequestMapping(value = "/add_blacklist", method = RequestMethod.POST, headers = "Accept=application/json")
+    public ResponseTransfer setUserToBlacklist(@RequestBody Long userId) {
+        
+        Client client = clientRepository.getOne(userId);
+        client.setIsInBlacklist(true);
+        clientRepository.save(client);
+
+        return new ResponseTransfer("Client added to blaclist");
+    }
 }

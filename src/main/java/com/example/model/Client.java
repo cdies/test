@@ -30,6 +30,8 @@ public class Client {
     private String surname;
 
     private String country;
+    
+    private Boolean isInBlacklist = false;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
@@ -75,4 +77,14 @@ public class Client {
     public void setLoans(List<Loan> loans) {
         this.loans = loans;
     }
+
+    public Boolean getIsInBlacklist() {
+        return isInBlacklist;
+    }
+
+    public void setIsInBlacklist(Boolean isInBlacklist) {
+        this.isInBlacklist = isInBlacklist;
+    }
+    
+    
 }
