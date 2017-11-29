@@ -35,7 +35,7 @@ public class ClientController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer addNewCustomer(@RequestBody Client client) {
 
-        Optional<Client> isExist = clientRepository.findByNameAndSurnameAndCountry(client.getName(), client.getSurname(), client.getCountry());
+        Optional<Client> isExist = clientRepository.findByNameAndSurnameAndCountry(client.getName(), client.getSurname(), client.getCountry().getCountryName());
 
         if (isExist.isPresent()) {
             throw new UserAlreadyExists("");
@@ -62,7 +62,7 @@ public class ClientController {
     public ResponseTransfer setUserToBlacklist(@RequestBody Long userId) {
         
         Client client = clientRepository.getOne(userId);
-        client.setIsInBlacklist(true);
+        client.setIsBlacklist(true);
         clientRepository.save(client);
 
         return new ResponseTransfer("Client added to blaclist");

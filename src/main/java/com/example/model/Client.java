@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -22,16 +23,18 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private Long id;
 
     private String name;
 
     private String surname;
 
-    private String country;
-    
-    private Boolean isInBlacklist = false;
+    @ManyToOne(targetEntity = Country.class, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "country_id")
+    private Country country;
+
+    private Boolean isBlacklist = false;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
@@ -62,11 +65,11 @@ public class Client {
         this.surname = surname;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
@@ -78,13 +81,11 @@ public class Client {
         this.loans = loans;
     }
 
-    public Boolean getIsInBlacklist() {
-        return isInBlacklist;
+    public Boolean getIsBlacklist() {
+        return isBlacklist;
     }
 
-    public void setIsInBlacklist(Boolean isInBlacklist) {
-        this.isInBlacklist = isInBlacklist;
+    public void setIsBlacklist(Boolean isInBlacklist) {
+        this.isBlacklist = isInBlacklist;
     }
-    
-    
 }

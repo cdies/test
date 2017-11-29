@@ -10,7 +10,7 @@ app.controller("LoanShowAll", function ($scope, showAll) {
 app.controller("addLoan", function ($scope, $http, showAll) {
 
     showAll.async('../client/all').then(function (data) {
-        $scope.clients = data;
+        $scope.clients = $scope.isBlacklistFilter(data);
     });
 
 //TODO: check value for correct
@@ -23,4 +23,17 @@ app.controller("addLoan", function ($scope, $http, showAll) {
                     console.log(error);
                 });
     };
+
+    $scope.isBlacklistFilter = function (clients) {
+        var result = [];
+        angular.forEach(clients, function (client, key) {
+
+            if (client.isBlacklist) {
+                return;
+            }
+            result.push(client);
+        });
+        return result;
+    };
+
 });

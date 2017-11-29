@@ -19,6 +19,22 @@ app.controller("ClientShowAll", function ($scope, $http, showAll) {
         }
     };
 
+    $scope.isBlacklistFilter = function (clients) {
+        var result = [];
+        angular.forEach(clients, function (client, key) {
+
+            if (client.isBlacklist) {
+                return;
+            }
+            result.push(client);
+        });
+        return result;
+    };
+
+    $scope.addBlacklist = function () {
+
+    };
+
 });
 
 

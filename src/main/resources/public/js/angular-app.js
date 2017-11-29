@@ -37,6 +37,12 @@ app.config(function ($stateProvider) {
                 templateUrl: 'template/loan-by-user.html',
                 data: {pageTitle: 'Show loan by user'},
                 controller: 'ClientShowAll'
+            })
+            .state('addBlacklist', {
+                url: 'addBlacklist',
+                templateUrl: 'template/add-blacklist.html',
+                data: {pageTitle: 'Add user to blacklist'},
+                controller: 'ClientShowAll'
             });
 });
 
