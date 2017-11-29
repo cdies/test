@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.FOUND)
-public class UserAlreadyExists extends RuntimeException {
+public class InstanceAlreadyExists extends RuntimeException {
     
-    public UserAlreadyExists(String message){
-        super("That user already exists! " + message);
+    public InstanceAlreadyExists(String message){
+        super(message);
     }
 }

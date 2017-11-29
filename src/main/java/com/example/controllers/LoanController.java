@@ -23,7 +23,7 @@ public class LoanController {
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(LoanController.class);
 
     @Autowired
-    LoanRepository loanRepository;
+    private LoanRepository loanRepository;
 
     @GetMapping(value = "/all", headers = "Accept=application/json")
     public Iterable<Loan> getAllLoans() {

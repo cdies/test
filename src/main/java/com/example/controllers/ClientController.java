@@ -6,7 +6,7 @@
 package com.example.controllers;
 
 import com.example.controllers.helper.ResponseTransfer;
-import com.example.controllers.helper.UserAlreadyExists;
+import com.example.controllers.helper.InstanceAlreadyExists;
 import com.example.model.Client;
 import com.example.model.Loan;
 import com.example.repository.ClientRepository;
@@ -23,48 +23,49 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("client")
 public class ClientController {
-
+    
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(ClientController.class);
-
+    
     @Autowired
     private ClientRepository clientRepository;
-
+    
     @Autowired
     private LoanRepository loanRepository;
-
+    
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer addNewCustomer(@RequestBody Client client) {
-
+        
         Optional<Client> isExist = clientRepository.findByNameAndSurnameAndCountry(client.getName(), client.getSurname(), client.getCountry().getCountryName());
-
+        
         if (isExist.isPresent()) {
-            throw new UserAlreadyExists("");
+            logger.info("Client " + client.getName() + ", " + client.getSurname() + " is already esists in DB!");
+            throw new InstanceAlreadyExists("Client is already exists!");
         }
-
+        
         clientRepository.save(client);
-
-        return new ResponseTransfer("Client successefully saved");
+        
+        return new ResponseTransfer("Client successfully saved.");
     }
-
+    
     @GetMapping(value = "/all", headers = "Accept=application/json")
     public Iterable<Client> getAllUsers() {
-
+        
         return clientRepository.findAll();
     }
-
+    
     @RequestMapping(value = "/loan", method = RequestMethod.POST, headers = "Accept=application/json")
     public Iterable<Loan> GetAllLoansOfUsers(@RequestBody Long userId) {
-
+        
         return loanRepository.findByUserId(userId);
     }
-
+    
     @RequestMapping(value = "/add_blacklist", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer setUserToBlacklist(@RequestBody Long userId) {
         
         Client client = clientRepository.getOne(userId);
         client.setIsBlacklist(true);
         clientRepository.save(client);
-
+        
         return new ResponseTransfer("Client added to blaclist");
     }
 }
