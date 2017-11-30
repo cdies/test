@@ -8,6 +8,11 @@ app.config(function ($stateProvider) {
                 templateUrl: 'template/home.html',
                 data: {pageTitle: 'HomePage'}
             })
+            .state('about', {
+                url: 'about',
+                templateUrl: 'template/about.html',
+                data: {pageTitle: 'About'}
+            })
             .state('loans', {
                 url: 'loans',
                 templateUrl: 'template/all-loans.html',
