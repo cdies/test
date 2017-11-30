@@ -1,16 +1,27 @@
-Readme:
+Application stack:
+
+    Spring + Angular + H2-database
+
+Test data:
+    all test data in com.example.simple.data package
 
 you can:
     apply loan by client
+
     show all loans
+
     show loan per client
+
     show all clients
-    add loan per user
-    add client to blaclist
-    add country
-    add country to blaclist
-    delete country from blaclist
+
     add client
+
+    add client to blacklist (when did, you can't show this client in dropdown list on "add loan" page
+    add country
+
+    add country to blacklist (when did, all clients from that country you cant' show in list on "add loan" page
+
+    delete country from blacklist
 
 All other functional like:
     delete client
@@ -18,5 +29,7 @@ All other functional like:
     delete loan
     delete country
 not programmed at all :)
+
+Engoy!:)
     
 
