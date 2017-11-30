@@ -2,26 +2,16 @@
 <html ng-app="app">
     <head>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-        <meta content="utf-8" http-equiv="encoding">
-
         <title ng-bind="$state.current.data.pageTitle"></title>
-
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
         <div ng-controller="topMenuController">
-            <nav>
-                <a ng-click="menuItemClick('default')" href="#">
-                    <span>Home page</span>
-                </a>
-                <a ng-click="menuItemClick('about')" href="#">
-                    <span>About</span>
-                </a>
-            </nav>
-
-            <div ui-view></div>
-
+            <button class="button" ng-click="menuItemClick('default')">Home</button>
+            <button class ="button" ng-click="menuItemClick('about')">About</button>
         </div>
+
+        <div ui-view></div>
 
         <script src="js/plugin/angular.min.js"></script>
         <script src="js/plugin/angular-ui-route.min.js"></script>
