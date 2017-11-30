@@ -1,0 +1,27 @@
+<div>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <h2>Add country to the blacklist:</h2>
+                    <select ng-model="selectedCountry" ng-options="x.countryName for x in countries"></select>
+                    <button ng-click="addBlacklist()" ng-enter="addBlacklist()">Add to blacklist</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Remove country from the blacklist:</h2>
+                     <select ng-model="selectedCountryRem" ng-options="x.countryName for x in countries"></select>
+                    <button ng-click="removeBlacklist()" ng-enter="removeBlacklist()">Remove from blacklist</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Add new country:</h2>
+                    <p>Country name: <input type="text" ng-model="countryName"></p>
+                    <button ng-click="addNewCountry()" ng-enter="addNewCountry()">Add country</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

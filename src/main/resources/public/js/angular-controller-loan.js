@@ -13,22 +13,26 @@ app.controller("addLoan", function ($scope, $http, showAll) {
         $scope.clients = $scope.isBlacklistFilter(data);
     });
 
-//TODO: check value for correct
+//TODO: check parametrs for correct values
     $scope.addNewLoan = function () {
-        $http.post('../loan/add', {userId: $scope.selectedClient.id, loan: $scope.loan, term: $scope.term}).
-                then(function (data) {
-                    alert(data.data.text);
-                }, function (error) {
-                    alert(error.data.message);
-                    console.log(error);
-                });
+        if (!!$scope.selectedClient) {
+            $http.post('../loan/add', {userId: $scope.selectedClient.id, loan: $scope.loan, term: $scope.term}).
+                    then(function (data) {
+                        alert(data.data.text);
+                    }, function (error) {
+                        alert(error.data.message);
+                        console.log(error);
+                    });
+        } else {
+            alert("choose client!");
+        }
     };
 
     $scope.isBlacklistFilter = function (clients) {
         var result = [];
         angular.forEach(clients, function (client, key) {
 
-            if (client.isBlacklist) {
+            if (client.isBlacklist === true || client.country.isBlacklist === true) {
                 return;
             }
             result.push(client);

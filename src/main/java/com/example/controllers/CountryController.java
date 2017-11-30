@@ -44,7 +44,7 @@ public class CountryController {
         Optional<Country> isExist = CountryRepository.findByCountryName(countryName);
 
         if (isExist.isPresent()) {
-            logger.info("Country "+ countryName + "is already exists!");
+            logger.info("Country " + countryName + "is already exists!");
             throw new InstanceAlreadyExists("Country is already exists!");
         }
 
@@ -55,17 +55,12 @@ public class CountryController {
         return new ResponseTransfer("Country successfully saved");
     }
 
-    @RequestMapping(value = "/add_blacklist", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseTransfer setUserToBlacklist(@RequestBody String countryName) {
+    @RequestMapping(value = "/blacklist", method = RequestMethod.POST, headers = "Accept=application/json")
+    public ResponseTransfer setUserToBlacklist(@RequestBody Country country) {
 
-        Iterable<Client> clients = clientRepository.findByCountryCountryName(countryName);
+        CountryRepository.save(country);
 
-        for (Client client : clients) {
-            client.setIsBlacklist(true);
-            clientRepository.save(client);
-        }
-
-        return new ResponseTransfer("Client added to blaclist");
+        return new ResponseTransfer("Operation for Country " + country.getCountryName() + " has completed");
     }
 
 }

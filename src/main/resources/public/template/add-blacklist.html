@@ -1,6 +1,6 @@
 <div>
     <h2>Select user:</h2>
-    <select ng-model="selectedClient" ng-options="x as (x.name + ' ' + x.surname + ' ' + x.country) for x in isBlacklistFilter(clients)"></select>
+    <select ng-model="selectedClient" ng-options="x as (x.name + ' ' + x.surname + ' ' + x.country.countryName) for x in isBlacklistFilter(clients)"></select>
     <button ng-click="addBlacklist()" ng-enter="addBlacklist()">Add to blacklist</button>
 </div>
 

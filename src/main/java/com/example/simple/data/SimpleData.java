@@ -37,7 +37,7 @@ public class SimpleData {
 
         Country country2 = new Country();
         country2.setCountryName("pl");
-        countryRepository.save(country1);
+        countryRepository.save(country2);
 
         Client client1 = new Client();
         client1.setName("Name1");
@@ -74,7 +74,7 @@ public class SimpleData {
         client3.setName("Name3");
         client3.setSurname("Surname3");
         client3.setIsBlacklist(true);
-        client3.setCountry(country1);
+        client3.setCountry(country2);
 
         clientRepository.save(client3);
     }

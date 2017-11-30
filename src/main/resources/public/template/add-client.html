@@ -1,7 +1,7 @@
 <div>
-    <h2>Input all client data.</h2>
+    <h2>Input all client data..</h2>
+    <p>Select country: </p> <select ng-model="selectedCountry" ng-options="x.countryName for x in countries"></select>
     <p>Client name: <input type="text" ng-model="name"></p>
     <p>Client surname: <input type="text" ng-model="surname"></p>
-    <p>Client country <input type="text" ng-model="country"></p>
     <button ng-click="addNewClient()" ng-enter="addNewClient()">Add client</button>
 </div>

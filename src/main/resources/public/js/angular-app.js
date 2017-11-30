@@ -43,7 +43,14 @@ app.config(function ($stateProvider) {
                 templateUrl: 'template/add-blacklist.html',
                 data: {pageTitle: 'Add user to blacklist'},
                 controller: 'ClientShowAll'
+            })
+            .state('country', {
+                url: 'country',
+                templateUrl: 'template/country.html',
+                data: {pageTitle: 'Country stuff'},
+                controller: 'country'
             });
+
 });
 
 app.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {

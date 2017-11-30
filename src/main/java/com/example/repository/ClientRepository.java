@@ -13,7 +13,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     
     Optional<Client> findById(Long id);
     
-    Optional<Client> findByNameAndSurnameAndCountry(String name, String surname, String country);
+    Optional<Client> findByNameAndSurnameAndCountryCountryName(String name, String surname, String country);
     
     Iterable<Client> findByCountryCountryName(String countryName);
 }

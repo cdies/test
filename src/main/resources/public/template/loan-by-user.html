@@ -1,6 +1,6 @@
 <div>
     <h2>Select user:</h2>
-    <select ng-model="selectedClient" ng-options="x as (x.name + ' ' + x.surname + ' ' + x.country) for x in clients"></select>
+    <select ng-model="selectedClient" ng-options="x as (x.name + ' ' + x.surname + ' ' + x.country.countryName) for x in clients"></select>
     <button ng-click="showLoans()" ng-enter="showLoans()">show loan</button>
 </div>
 <table>
@@ -10,3 +10,4 @@
         </tr>
     </tbody>
 </table>
+

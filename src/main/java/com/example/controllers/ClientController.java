@@ -35,7 +35,7 @@ public class ClientController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer addNewCustomer(@RequestBody Client client) {
         
-        Optional<Client> isExist = clientRepository.findByNameAndSurnameAndCountry(client.getName(), client.getSurname(), client.getCountry().getCountryName());
+        Optional<Client> isExist = clientRepository.findByNameAndSurnameAndCountryCountryName(client.getName(), client.getSurname(), client.getCountry().getCountryName());
         
         if (isExist.isPresent()) {
             logger.info("Client " + client.getName() + ", " + client.getSurname() + " is already esists in DB!");

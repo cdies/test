@@ -5,7 +5,6 @@
  */
 package com.example.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +18,12 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     @Column(name = "country_id")
     private long id;
 
     private String countryName;
+    
+    private boolean isBlacklist = false;
     
     public long getId() {
         return id;
@@ -39,5 +39,13 @@ public class Country {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
-    }   
+    }
+
+    public boolean isIsBlacklist() {
+        return isBlacklist;
+    }
+
+    public void setIsBlacklist(boolean isBlacklist) {
+        this.isBlacklist = isBlacklist;
+    }
 }
