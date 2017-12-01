@@ -22,6 +22,7 @@ Libraries used
     Spring MVC (Spring Web)
     Spring Data JPA
     H2 embedded database
+    Angular 1.x
 
 Tools used
 
