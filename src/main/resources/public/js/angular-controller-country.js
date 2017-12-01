@@ -52,6 +52,16 @@ app.controller("country", function ($scope, $http, showAll) {
 
 app.controller("countryLoanLimit", function ($scope, $http, showAll) {
 
+    $scope.startTime = {
+        start: '',
+        end: '00:00'
+    };
+
+    $scope.endTime = {
+        start: '',
+        end: '00:00'
+    };
+
     showAll.async('../country/all').then(function (data) {
         $scope.countries = data;
     });

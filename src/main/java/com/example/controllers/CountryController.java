@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.example.controllers;
 
 import com.example.controllers.helper.ResponseTransfer;
@@ -75,6 +70,11 @@ public class CountryController {
         return new ResponseTransfer("Operation for Country " + country.getCountryName() + " has completed");
     }
 
+    /***
+     * Set loan limit for country in a given timeframe
+     * @param country
+     * @return 
+     */
     @PostMapping(value = "/loanLimit", headers = "Accept=application/json")
     public ResponseTransfer setCountOfLoans(@RequestBody Country country) {
 

@@ -9,8 +9,10 @@
     </head>
     <body>
         <div ng-controller="topMenuController">
-            <button class="button" ng-click="menuItemClick('default')">Main page</button>
-            <button class="button" ng-click="menuItemClick('about')" >About</button>
+            <div class="btn-group top5">
+                <button type="button" class="btn btn-success btn-lg" ng-click="menuItemClick('default')">Main page</button>
+                <button type="button" class="btn btn-success btn-lg" ng-click="menuItemClick('about')" >About</button>
+            </div>
         </div>
 
         <div ui-view></div>
