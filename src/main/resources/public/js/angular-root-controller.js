@@ -1,4 +1,4 @@
-app.controller('topMenuController', function ($scope, $state) {
+app.controller('topMenuController', function ($scope, $state, $http) {
 
     $scope.menuItemClick = function (url) {
         if (url === '')

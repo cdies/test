@@ -6,8 +6,7 @@ app.config(function ($stateProvider) {
             .state('default', {
                 url: '',
                 templateUrl: 'template/home.html',
-                data: {pageTitle: 'HomePage'},
-                controller: 'topMenuController'
+                data: {pageTitle: 'HomePage'}
             })
             .state('about', {
                 url: 'about',
