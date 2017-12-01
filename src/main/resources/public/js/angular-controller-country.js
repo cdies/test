@@ -52,10 +52,6 @@ app.controller("country", function ($scope, $http, showAll) {
 
 app.controller("countryLoanLimit", function ($scope, $http, showAll) {
 
-    $scope.example = {
-        value: new Date(2010, 11, 28, 14, 57)
-    };
-
     showAll.async('../country/all').then(function (data) {
         $scope.countries = data;
     });
@@ -63,8 +59,8 @@ app.controller("countryLoanLimit", function ($scope, $http, showAll) {
 //TODO: check value on correct or empty
     $scope.addLoanLimit = function () {
 
-        $scope.selectedCountry.startTime = $scope.startTime;
-        $scope.selectedCountry.endTime = $scope.endTime;
+        $scope.selectedCountry.startTime = $scope.startTime.start + '-' + $scope.startTime.end;
+        $scope.selectedCountry.endTime = $scope.endTime.start + '-' + $scope.endTime.end;
         $scope.selectedCountry.loanCount = $scope.loanCount;
 
         $http.post('../country/loanLimit', $scope.selectedCountry).
@@ -74,7 +70,6 @@ app.controller("countryLoanLimit", function ($scope, $http, showAll) {
                     alert(error.data.message);
                     console.log(error);
                 });
-
     };
 
 });

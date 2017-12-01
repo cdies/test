@@ -10,23 +10,43 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row top10">
             <div class="form-group">
                 <div class='col-xs-3'>
-                    <label for="starttime">Start Time:</label>
-                    <input type="datetime-local" class="form-control" id="starttime" ng-model="startTime" placeholder="yyyy-MM-ddTHH:mm:ss"/>
+                    <label for="starttime">Start day:</label>
+                    <div class="input-group" moment-picker="startTime.start" format="YYYY-MM-DD">
+                        <span class="input-group-addon"> <i class="octicon octicon-calendar"></i> </span> 
+                        <input class="form-control" placeholder="Select a date" id="starttime" ng-model="startTime.start" ng-model-options="{updateOn: 'blur'}">
+                    </div>
+                </div>
+                <div class='col-xs-3'>
+                    <label for="starttime2">Start time:</label>
+                    <div class="input-group" moment-picker="startTime.end" format="HH:mm:ss">
+                        <span class="input-group-addon"> <i class="octicon octicon-clock"></i> </span>
+                        <input class="form-control" placeholder="Select a time" id="starttime" ng-model="startTime.end" ng-model-options="{updateOn: 'blur'}"> 
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row top10">
             <div class="form-group">
                 <div class='col-xs-3'>
-                    <label for="endtime">End Time:</label>
-                    <input type="datetime-local" id="endtime" class="form-control" ng-model="endTime" placeholder="yyyy-MM-ddTHH:mm:ss"/>
+                    <label for="endtime">End day:</label>
+                    <div class="input-group" moment-picker="endTime.start" format="YYYY-MM-DD">
+                        <span class="input-group-addon"> <i class="octicon octicon-calendar"></i> </span> 
+                        <input class="form-control" placeholder="Select a date" id="endtime" ng-model="endTime.start" ng-model-options="{updateOn: 'blur'}">
+                    </div>
+                </div>
+                <div class='col-xs-3'>
+                    <label for="endtime2">End time:</label>
+                    <div class="input-group" moment-picker="endTime.end" format="HH:mm:ss">
+                        <span class="input-group-addon"> <i class="octicon octicon-clock"></i> </span>
+                        <input class="form-control" id="endtime2" placeholder="Select a time" ng-model="endTime.end" ng-model-options="{updateOn: 'blur'}"> 
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row top10">
             <div class="form-group">
                 <div class="col-xs-2">
                     <label for="loancount">Loan limit count:</label>
@@ -37,3 +57,6 @@
         </div>
     </form>
 </div>
+
+
+
