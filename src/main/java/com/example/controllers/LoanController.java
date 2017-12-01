@@ -25,12 +25,21 @@ public class LoanController {
     @Autowired
     private LoanRepository loanRepository;
 
+    /**
+     * Return all loans presented in database
+     * @return 
+     */
     @GetMapping(value = "/all", headers = "Accept=application/json")
     public Iterable<Loan> getAllLoans() {
 
         return loanRepository.findAll();
     }
 
+    /**
+     * Save loan in database
+     * @param loan
+     * @return 
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer saveLoan(@RequestBody Loan loan) {
         

@@ -32,6 +32,11 @@ public class ClientController {
     @Autowired
     private LoanRepository loanRepository;
     
+    /**
+     *  Add client to database
+     * @param client
+     * @return 
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer addNewCustomer(@RequestBody Client client) {
         
@@ -53,12 +58,22 @@ public class ClientController {
         return clientRepository.findAll();
     }
     
+    /**
+     * Find user by his ID
+     * @param userId
+     * @return 
+     */
     @RequestMapping(value = "/loan", method = RequestMethod.POST, headers = "Accept=application/json")
-    public Iterable<Loan> GetAllLoansOfUsers(@RequestBody Long userId) {
+    public Iterable<Loan> GetAllLoansOfUsersByUserID(@RequestBody Long userId) {
         
         return loanRepository.findByUserId(userId);
     }
     
+    /**
+     * Add user to blacklist by ID
+     * @param userId
+     * @return 
+     */
     @RequestMapping(value = "/add_blacklist", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer setUserToBlacklist(@RequestBody Long userId) {
         

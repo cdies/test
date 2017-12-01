@@ -7,7 +7,6 @@ package com.example.controllers;
 
 import com.example.controllers.helper.ResponseTransfer;
 import com.example.controllers.helper.InstanceAlreadyExists;
-import com.example.model.Client;
 import com.example.model.Country;
 import com.example.repository.ClientRepository;
 import com.example.repository.CountryRepository;
@@ -29,15 +28,21 @@ public class CountryController {
     @Autowired
     private CountryRepository CountryRepository;
 
-    @Autowired
-    private ClientRepository clientRepository;
-
+    /**
+     * Return all country presented in database
+     * @return 
+     */
     @GetMapping(value = "/all", headers = "Accept=application/json")
     public Iterable<Country> getAllCountries() {
 
         return CountryRepository.findAll();
     }
 
+    /**
+     * Add country to database
+     * @param countryName
+     * @return 
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer addNewCountry(@RequestBody String countryName) {
 
@@ -55,6 +60,11 @@ public class CountryController {
         return new ResponseTransfer("Country successfully saved");
     }
 
+    /**
+     * Add country to the blacklist
+     * @param country
+     * @return 
+     */
     @RequestMapping(value = "/blacklist", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseTransfer setUserToBlacklist(@RequestBody Country country) {
 
