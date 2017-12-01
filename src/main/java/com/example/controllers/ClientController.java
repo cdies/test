@@ -15,9 +15,9 @@ import java.util.Optional;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,7 +37,7 @@ public class ClientController {
      * @param client
      * @return 
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
+    @PostMapping(value = "/add", headers = "Accept=application/json")
     public ResponseTransfer addNewCustomer(@RequestBody Client client) {
         
         Optional<Client> isExist = clientRepository.findByNameAndSurnameAndCountryCountryName(client.getName(), client.getSurname(), client.getCountry().getCountryName());
@@ -63,7 +63,7 @@ public class ClientController {
      * @param userId
      * @return 
      */
-    @RequestMapping(value = "/loan", method = RequestMethod.POST, headers = "Accept=application/json")
+    @PostMapping(value = "/loan", headers = "Accept=application/json")
     public Iterable<Loan> GetAllLoansOfUsersByUserID(@RequestBody Long userId) {
         
         return loanRepository.findByUserId(userId);
@@ -74,7 +74,7 @@ public class ClientController {
      * @param userId
      * @return 
      */
-    @RequestMapping(value = "/add_blacklist", method = RequestMethod.POST, headers = "Accept=application/json")
+    @PostMapping(value = "/add_blacklist", headers = "Accept=application/json")
     public ResponseTransfer setUserToBlacklist(@RequestBody Long userId) {
         
         Client client = clientRepository.getOne(userId);

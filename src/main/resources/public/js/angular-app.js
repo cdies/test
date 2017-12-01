@@ -55,6 +55,12 @@ app.config(function ($stateProvider) {
                 templateUrl: 'template/country.html',
                 data: {pageTitle: 'Country stuff'},
                 controller: 'country'
+            })
+            .state('countryLoanLimit', {
+                url: 'countryLoanLimit',
+                templateUrl: 'template/country-loan-count.html',
+                data: {pageTitle: 'Country loan limit'},
+                controller: 'countryLoanLimit'
             });
 
 });

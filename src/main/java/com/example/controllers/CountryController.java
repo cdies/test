@@ -8,15 +8,14 @@ package com.example.controllers;
 import com.example.controllers.helper.ResponseTransfer;
 import com.example.controllers.helper.InstanceAlreadyExists;
 import com.example.model.Country;
-import com.example.repository.ClientRepository;
 import com.example.repository.CountryRepository;
 import java.util.Optional;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,7 +29,8 @@ public class CountryController {
 
     /**
      * Return all country presented in database
-     * @return 
+     *
+     * @return
      */
     @GetMapping(value = "/all", headers = "Accept=application/json")
     public Iterable<Country> getAllCountries() {
@@ -40,10 +40,11 @@ public class CountryController {
 
     /**
      * Add country to database
+     *
      * @param countryName
-     * @return 
+     * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
+    @PostMapping(value = "/add", headers = "Accept=application/json")
     public ResponseTransfer addNewCountry(@RequestBody String countryName) {
 
         Optional<Country> isExist = CountryRepository.findByCountryName(countryName);
@@ -62,11 +63,20 @@ public class CountryController {
 
     /**
      * Add country to the blacklist
+     *
      * @param country
-     * @return 
+     * @return
      */
-    @RequestMapping(value = "/blacklist", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseTransfer setUserToBlacklist(@RequestBody Country country) {
+    @PostMapping(value = "/blacklist", headers = "Accept=application/json")
+    public ResponseTransfer setUsersCountryToBlacklist(@RequestBody Country country) {
+
+        CountryRepository.save(country);
+
+        return new ResponseTransfer("Operation for Country " + country.getCountryName() + " has completed");
+    }
+
+    @PostMapping(value = "/loanLimit", headers = "Accept=application/json")
+    public ResponseTransfer setCountOfLoans(@RequestBody Country country) {
 
         CountryRepository.save(country);
 

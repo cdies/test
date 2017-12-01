@@ -5,6 +5,8 @@
  */
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +24,17 @@ public class Country {
     private long id;
 
     private String countryName;
-    
+
     private boolean isBlacklist = false;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "GMT")
+    private Date startTime;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "GMT")
+    private Date endTime;
     
+    private long loanCount;
+
     public long getId() {
         return id;
     }
@@ -48,4 +58,30 @@ public class Country {
     public void setIsBlacklist(boolean isBlacklist) {
         this.isBlacklist = isBlacklist;
     }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public long getLoanCount() {
+        return loanCount;
+    }
+
+    public void setLoanCount(long loanCount) {
+        this.loanCount = loanCount;
+    }
+    
+    
 }

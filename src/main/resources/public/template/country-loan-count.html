@@ -1,0 +1,39 @@
+<div>
+    <form class="container">
+        <div class="row">
+            <h2>Add limit:</h2>
+            <div class="form-group">
+                <div class='col-xs-3'>
+                    <label for="dropcountry">Choose country</label>
+                    <select class="form-control" id="dropcountry" ng-model="selectedCountry" ng-options="x.countryName for x in countries">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class='col-xs-3'>
+                    <label for="starttime">Start Time:</label>
+                    <input type="datetime-local" class="form-control" id="starttime" ng-model="startTime" placeholder="yyyy-MM-ddTHH:mm:ss"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class='col-xs-3'>
+                    <label for="endtime">End Time:</label>
+                    <input type="datetime-local" id="endtime" class="form-control" ng-model="endTime" placeholder="yyyy-MM-ddTHH:mm:ss"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-xs-2">
+                    <label for="loancount">Loan limit count:</label>
+                    <input type="text" id="loancount" class="form-control" placeholder="Enter loan limit" ng-model="loanCount">
+                    <button class="btn btn-default top10" ng-click="addLoanLimit()" ng-enter="addLoanLimit()">Add limit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
