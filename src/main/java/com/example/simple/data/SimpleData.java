@@ -32,11 +32,11 @@ public class SimpleData {
     public void init() {
 
         Country country1 = new Country();
-        country1.setCountryName("lv");
+        country1.setCountryName("RU");
         countryRepository.save(country1);
 
         Country country2 = new Country();
-        country2.setCountryName("pl");
+        country2.setCountryName("NL");
         countryRepository.save(country2);
 
         Client client1 = new Client();

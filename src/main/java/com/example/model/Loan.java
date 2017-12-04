@@ -25,6 +25,8 @@ public class Loan {
     
     @Column(name = "user_id")
     private Long userId;
+    
+    private String countryCode = "LV";
 
     public Long getId() {
         return id;
@@ -56,5 +58,15 @@ public class Loan {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    } 
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+    
+    
 }

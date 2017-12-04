@@ -5,13 +5,14 @@
  */
 package com.example.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,13 +28,9 @@ public class Country {
 
     private boolean isBlacklist = false;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd-HH:mm", timezone = "GMT+3")
-    private Date startTime;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd-HH:mm", timezone = "GMT+3")
-    private Date endTime;
-    
-    private long loanCount;
+    @ManyToOne(targetEntity = Timeframe.class, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "count_id")
+    private Timeframe timeframeCountLoan;
 
     public long getId() {
         return id;
@@ -59,29 +56,11 @@ public class Country {
         this.isBlacklist = isBlacklist;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public Timeframe getTimeframeCountLoan() {
+        return timeframeCountLoan;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setTimeframeCountLoan(Timeframe timeframeCountLoan) {
+        this.timeframeCountLoan = timeframeCountLoan;
     }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public long getLoanCount() {
-        return loanCount;
-    }
-
-    public void setLoanCount(long loanCount) {
-        this.loanCount = loanCount;
-    }
-    
-    
 }

@@ -69,11 +69,15 @@ app.controller("countryLoanLimit", function ($scope, $http, showAll) {
 //TODO: check value on correct or empty
     $scope.addLoanLimit = function () {
 
-        $scope.selectedCountry.startTime = $scope.startTime.start + '-' + $scope.startTime.end;
-        $scope.selectedCountry.endTime = $scope.endTime.start + '-' + $scope.endTime.end;
-        $scope.selectedCountry.loanCount = $scope.loanCount;
+        var timeframe = {
+            countryId: $scope.selectedCountry.id,
+            startTime: $scope.startTime.start + '-' + $scope.startTime.end,
+            endTime: $scope.endTime.start + '-' + $scope.endTime.end,
+            countryCode: $scope.selectedCountry.countryName,
+            loanCount: $scope.loanCount
+        };
 
-        $http.post('../country/loanLimit', $scope.selectedCountry).
+        $http.post('../country/loanLimit', timeframe).
                 then(function (data) {
                     alert(data.data.text);
                 }, function (error) {

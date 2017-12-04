@@ -3,7 +3,9 @@ package com.example.controllers;
 import com.example.controllers.helper.ResponseTransfer;
 import com.example.controllers.helper.InstanceAlreadyExists;
 import com.example.model.Country;
+import com.example.model.Timeframe;
 import com.example.repository.CountryRepository;
+import com.example.repository.TimeframeRepository;
 import java.util.Optional;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class CountryController {
 
     @Autowired
     private CountryRepository CountryRepository;
+
+    @Autowired
+    private TimeframeRepository timeframeRepository;
 
     /**
      * Return all country presented in database
@@ -70,17 +75,19 @@ public class CountryController {
         return new ResponseTransfer("Operation for Country " + country.getCountryName() + " has completed");
     }
 
-    /***
+    /**
+     * *
      * Set loan limit for country in a given timeframe
+     *
      * @param country
-     * @return 
+     * @return
      */
     @PostMapping(value = "/loanLimit", headers = "Accept=application/json")
-    public ResponseTransfer setCountOfLoans(@RequestBody Country country) {
+    public ResponseTransfer setCountOfLoans(@RequestBody Timeframe timeframe) {
 
-        CountryRepository.save(country);
+        timeframeRepository.save(timeframe);
 
-        return new ResponseTransfer("Operation for Country " + country.getCountryName() + " has completed");
+        return new ResponseTransfer("Timeframe has setted");
     }
 
 }

@@ -15,17 +15,31 @@ app.controller("addLoan", function ($scope, $http, showAll) {
 
 //TODO: check parametrs for correct values
     $scope.addNewLoan = function () {
-        if (!!$scope.selectedClient) {
-            $http.post('../loan/add', {userId: $scope.selectedClient.id, loan: $scope.loan, term: $scope.term}).
-                    then(function (data) {
-                        alert(data.data.text);
-                    }, function (error) {
-                        alert(error.data.message);
-                        console.log(error);
-                    });
-        } else {
-            alert("choose client!");
-        }
+
+        $http.get('//freegeoip.net/json/').
+                then(function (data) {
+
+                    var loanData = {
+                        userId: $scope.selectedClient.id,
+                        loan: $scope.loan,
+                        term: $scope.term,
+                        countryCode: data.data.country_code
+                    };
+
+                    if (!!$scope.selectedClient) {
+                        $http.post('../loan/add', loanData).
+                                then(function (data) {
+                                    alert(data.data.text);
+                                }, function (error) {
+                                    alert(error.data.message);
+                                    console.log(error);
+                                });
+                    } else {
+                        alert("choose client!");
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
     };
 
     $scope.isBlacklistFilter = function (clients) {
