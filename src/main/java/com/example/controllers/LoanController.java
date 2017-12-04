@@ -6,14 +6,11 @@
 package com.example.controllers;
 
 import com.example.controllers.helper.ResponseTransfer;
-import com.example.model.Country;
 import com.example.model.Loan;
 import com.example.model.Timeframe;
-import com.example.repository.CountryRepository;
 import com.example.repository.LoanRepository;
 import com.example.repository.TimeframeRepository;
 import java.util.Date;
-import java.util.Optional;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,19 +55,21 @@ public class LoanController {
 
         Iterable<Timeframe> timeframes = timeframeRepository.findByCountryCode(loan.getCountryCode());
 
-        if (timeframes != null) {
-            for (Timeframe checkCountry : timeframes) {
-                if (todayDate.after(checkCountry.getStartTime()) && todayDate.before(checkCountry.getEndTime())) {
-                    if (checkCountry.getLoanCount() > checkCountry.getCurrentLoanCount()) {
-                        checkCountry.setCurrentLoanCount(checkCountry.getCurrentLoanCount() + 1);
-                        loanRepository.save(loan);
-                        return new ResponseTransfer("Loan successefully added.");
-                    } else {
-                        return new ResponseTransfer("Current country has limit for a new loan.");
-                    }
+        for (Timeframe checkCountry : timeframes) {
+            if (todayDate.after(checkCountry.getStartTime()) && todayDate.before(checkCountry.getEndTime())) {
+                if (checkCountry.getLoanCount() > checkCountry.getCurrentLoanCount()) {
+                    checkCountry.setCurrentLoanCount(checkCountry.getCurrentLoanCount() + 1);
+                    loanRepository.save(loan);
+                    return new ResponseTransfer("Loan successefully added.");
+                } else {
+                    return new ResponseTransfer("Your current country location: "
+                            + loan.getCountryCode() + " has limit for a new loan.");
                 }
             }
+
         }
-        return new ResponseTransfer("Loan wasn't added.");
+
+        loanRepository.save(loan);
+        return new ResponseTransfer("Loan successefully added.");
     }
 }
